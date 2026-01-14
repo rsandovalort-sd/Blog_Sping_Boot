@@ -27,12 +27,14 @@ public class ComentarioService implements IcomentarioService {
     public List<Comentario> obtenerPorPosteo(Long posteo_id) {
         Posteo posteo = posteoRepository.findById(posteo_id).orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
         posteo.getComentarios().size();
+
         return posteo.getComentarios();
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Comentario> obtenerPorId(Long id) {
+
         return comentarioRepository.findById(id);
     }
 
@@ -60,11 +62,9 @@ public class ComentarioService implements IcomentarioService {
     }
 
     public Comentario asociarComentarioALPosteo(Long posteo_id, Long comentario_id) {
-        Posteo posteo = posteoRepository.findById(posteo_id)
-                .orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
+        Posteo posteo = posteoRepository.findById(posteo_id).orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
 
-        Comentario comentario = comentarioRepository.findById(comentario_id)
-                .orElseThrow(() -> new RuntimeException("Comentario no encontrado"));
+        Comentario comentario = comentarioRepository.findById(comentario_id).orElseThrow(() -> new RuntimeException("Comentario no encontrado"));
 
         comentario.setPosteo(posteo);
         return comentarioRepository.save(comentario);

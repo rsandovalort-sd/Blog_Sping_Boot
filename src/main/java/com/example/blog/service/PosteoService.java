@@ -45,7 +45,7 @@ public class PosteoService implements IposteoService {
 
     @Override
     public void deletePosteo(Long id) {
-        Posteo posteo = posteoRepository.findById(id).orElseThrow(() -> new RuntimeException("Posteo no econtrado"));
+        Posteo posteo = posteoRepository.findById(id).orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
 
         posteoRepository.delete(posteo);
     }

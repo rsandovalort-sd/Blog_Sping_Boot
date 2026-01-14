@@ -29,15 +29,13 @@ public class AutorController {
 
     @GetMapping("/{id}")
     public Autor obtenerAutor(@PathVariable Long id) {
-        return autorService.obtenerPorId(id)
-                .orElseThrow(() -> new RuntimeException("Autor no encontrado"));
+        return autorService.obtenerPorId(id).orElseThrow(() -> new RuntimeException("Autor no encontrado"));
     }
 
     @PutMapping("/{id}")
     public Autor editarAutor(@PathVariable Long id, @RequestBody Autor autorActualizado) {
         autorService.editarAutor(id, autorActualizado);
-        return autorService.obtenerPorId(id)
-                .orElseThrow(() -> new RuntimeException("Autor no encontrado"));
+        return autorService.obtenerPorId(id).orElseThrow(() -> new RuntimeException("Autor no encontrado"));
     }
 
     @DeleteMapping("/{id}")
@@ -45,13 +43,11 @@ public class AutorController {
         autorService.deleteAutor(id);
     }
 
-    // Obtener todos los posteos de un autor
     @GetMapping("/{id}/posteos")
     public List<Posteo> obtenerPosteos(@PathVariable Long id) {
         return autorService.obtenerPosteosDeAutor(id);
     }
 
-    // Asignar un nuevo posteo a un autor
     @PostMapping("/{id}/posteos")
     public Autor asignarPosteo(@PathVariable Long id, @RequestBody Posteo posteo) {
         return autorService.asignarPosteo(id, posteo);

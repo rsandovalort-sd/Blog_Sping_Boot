@@ -29,15 +29,13 @@ public class PosteoController {
 
     @GetMapping("/{id}")
     public Posteo obtenerPosteo(@PathVariable Long id) {
-        return posteoService.obtenerPorId(id)
-                .orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
+        return posteoService.obtenerPorId(id).orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
     }
 
     @PutMapping("/{id}")
     public Posteo editarPosteo(@PathVariable Long id, @RequestBody Posteo posteoActualizado) {
         posteoService.editarPosteo(id, posteoActualizado);
-        return posteoService.obtenerPorId(id)
-                .orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
+        return posteoService.obtenerPorId(id).orElseThrow(() -> new RuntimeException("Posteo no encontrado"));
     }
 
     @DeleteMapping("/{id}")

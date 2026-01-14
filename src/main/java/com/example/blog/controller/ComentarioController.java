@@ -16,20 +16,19 @@ public class ComentarioController {
         this.comentarioService = comentarioService;
     }
 
-    @GetMapping("/posteo/{posteoId}")
-    public List<Comentario> obtenerPorPosteo(@PathVariable Long posteoId) {
-        return comentarioService.obtenerPorPosteo(posteoId);
+    @GetMapping("/posteo/{posteo_id}")
+    public List<Comentario> obtenerPorPosteo(@PathVariable Long posteo_id) {
+        return comentarioService.obtenerPorPosteo(posteo_id);
     }
 
     @GetMapping("/{id}")
     public Comentario obtenerComentario(@PathVariable Long id) {
-        return comentarioService.obtenerPorId(id)
-                .orElseThrow(() -> new RuntimeException("Comentario no encontrado"));
+        return comentarioService.obtenerPorId(id).orElseThrow(() -> new RuntimeException("Comentario no encontrado"));
     }
 
-    @PostMapping("/posteo/{posteoId}")
-    public Comentario crearComentario(@PathVariable Long posteoId, @RequestBody Comentario comentario) {
-        return comentarioService.guardarComentario(posteoId, comentario);
+    @PostMapping("/posteo/{posteo_id}")
+    public Comentario crearComentario(@PathVariable Long posteo_id, @RequestBody Comentario comentario) {
+        return comentarioService.guardarComentario(posteo_id, comentario);
     }
 
     @PutMapping("/{id}")
@@ -42,8 +41,8 @@ public class ComentarioController {
         comentarioService.eliminarComentario(id);
     }
 
-    @PostMapping("/{comentarioId}/posteo/{posteoId}")
-    public Comentario asociarComentario(@PathVariable Long comentarioId, @PathVariable Long posteoId) {
-        return comentarioService.asociarComentarioALPosteo(posteoId, comentarioId);
+    @PostMapping("/{comentario_id}/posteo/{posteo_id}")
+    public Comentario asociarComentario(@PathVariable Long comentario_id, @PathVariable Long posteo_id) {
+        return comentarioService.asociarComentarioALPosteo(posteo_id, comentario_id);
     }
 }

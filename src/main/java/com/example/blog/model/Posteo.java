@@ -1,8 +1,11 @@
 package com.example.blog.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "posteos")
@@ -16,6 +19,15 @@ public class Posteo {
     private String contenido;
     @Column(nullable = false)
     private LocalDate fechaCreacion;
+
+    @ManyToOne
+    @JoinColumn(name = "autor_id")
+    @JsonBackReference
+    private Autor autor;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "posteo", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comentario> comentarios;
 
     public Posteo() {
     }
@@ -58,4 +70,5 @@ public class Posteo {
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
 }

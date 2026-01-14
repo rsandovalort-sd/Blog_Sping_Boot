@@ -26,8 +26,7 @@ public class Comentario {
     public Comentario() {
     }
 
-    public Comentario(Long id, String texto, LocalDateTime fechaDeCreacion, Posteo posteo) {
-        this.id = id;
+    public Comentario( String texto, LocalDateTime fechaDeCreacion, Posteo posteo) {
         this.texto = texto;
         this.fechaDeCreacion = fechaDeCreacion;
         this.posteo = posteo;

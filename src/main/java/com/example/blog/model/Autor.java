@@ -1,5 +1,6 @@
 package com.example.blog.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class Autor {
     @Column(nullable = false, unique = true)
     private String correo;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Posteo> posteos;
 
@@ -25,9 +27,7 @@ public class Autor {
     public Autor() {
     }
 
-
-    public Autor(Long id, String nombre, String correo) {
-        this.id = id;
+    public Autor(String nombre, String correo) {
         this.nombre = nombre;
         this.correo = correo;
     }
@@ -56,7 +56,8 @@ public class Autor {
         this.correo = correo;
     }
 
-    public List<Posteos> getPosteos(){
-        this.posteos = posteos;
-    }
+    public List<Posteo> getPosteos(){ return posteos; }
+
+    public void setPosteos(List<Posteo> posteos){this.posteos = posteos;}
+
 }

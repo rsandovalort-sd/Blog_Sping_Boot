@@ -32,8 +32,7 @@ public class Posteo {
     public Posteo() {
     }
 
-    public Posteo(Long id, String titulo, String contenido, LocalDate fechaCreacion) {
-        this.id = id;
+    public Posteo(String titulo, String contenido, LocalDate fechaCreacion) {
         this.titulo = titulo;
         this.contenido = contenido;
         this.fechaCreacion = fechaCreacion;
@@ -70,5 +69,13 @@ public class Posteo {
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
+    public Autor getAutor() { return autor; }
+
+    public void setAutor(Autor autor) { this.autor = autor; }
+
+    public List<Comentario> getComentarios(){ return comentarios; }
+
+    public void setComentarios(List<Comentario> comentarios){this.comentarios = comentarios;}
 
 }

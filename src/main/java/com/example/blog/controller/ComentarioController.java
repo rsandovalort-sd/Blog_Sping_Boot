@@ -23,7 +23,7 @@ public class ComentarioController {
 
     @GetMapping("/{id}")
     public Comentario obtenerComentario(@PathVariable Long id) {
-        return comentarioService.obtenerPorId(id).orElseThrow(() -> new RuntimeException("Comentario no fue encontrado"));
+        return comentarioService.obtenerPorId(id).orElseThrow(() -> new RuntimeException("El comentario no fue encontrado"));
     }
 
     @PostMapping("/posteo/{posteo_id}")
